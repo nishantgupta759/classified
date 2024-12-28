@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Society Classifieds</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        header select {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+        }
+        .ad-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+        }
+        .ad-container img {
+            max-width: 80%;
+            max-height: 50vh;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .ad-details {
+            max-width: 500px;
+        }
+        .ad-details h2 {
+            color: #6200ea;
+        }
+        .ad-details p {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .navigation-buttons form {
+            margin: 0 10px;
+        }
+        .navigation-buttons button {
+            font-size: 24px;
+            padding: 10px 15px;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navigation-buttons button:hover {
+            background-color: #4b00b5;
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 1rem;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RajNagar Extenshion Society Classifieds</h1>
+        <form method="GET" action="/">
+            <select name="society" onchange="this.form.submit()">
+                <option value="">All Societies</option>
+                {% for society in societies %}
+                <option value="{{ society }}" {% if selected_society == society %}selected{% endif %}>{{ society }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </header>
+    <div class="ad-container">
+        {% if ad %}
+        <img src="{{ ad.img_url }}" alt="Ad Image">
+        <div class="ad-details">
+            <h2>{{ ad.title }}</h2>
+            <p>{{ ad.description }}</p>
+            <p><strong>Offer:</strong> {{ ad.offer }}</p>
+            <p><a href="{{ ad.website }}" target="_blank">Visit Website</a></p>
+            <p><strong>Visit Details:</strong> {{ ad.visit_details }}</p>
+        </div>
+        <div class="navigation-buttons">
+            <form method="GET" action="/">
+                <input type="hidden" name="society" value="{{ selected_society }}">
+                <input type="hidden" name="index" value="{{ previous_index }}">
+                <button type="submit">&#8249;</button> <!-- Left arrow -->
+            </form>
+            <form method="GET" action="/">
+                <input type="hidden" name="society" value="{{ selected_society }}">
+                <input type="hidden" name="index" value="{{ next_index }}">
+                <button type="submit">&#8250;</button> <!-- Right arrow -->
+            </form>
+        </div>
+        {% else %}
+        <p>No ads available for the selected society.</p>
+        {% endif %}
+    </div>
+    <footer>
+        © {{ current_year }} Society Classifieds. All rights reserved.
+    </footer>
+</body>
+</html>

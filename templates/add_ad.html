@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Advertisement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h1 {
+            text-align: center;
+            color: #6200ea;
+        }
+        .form-container form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .form-container form input,
+        .form-container form textarea,
+        .form-container form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container form button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-container form button:hover {
+            background-color: #4b00b5;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Advertisement</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+            <label for="society">Society</label>
+            <select name="society" required>
+                <option value="GulMohar Garden">GulMohar Garden</option>
+                <option value="SSC Blossom">SSC Blossom</option>
+                <option value="Shri Ram Heights">Shri Ram Heights</option>
+                <option value="Aura Chimera">Aura Chimera</option>
+                <option value="Officer City 1">Officer City 1</option>
+                <option value="KW Srishti">KW Srishti</option>
+                <option value="Platnum 321">Platnum 321</option>
+            </select>
+            <label for="title">Title</label>
+            <input type="text" name="title" required>
+            <label for="description">Description</label>
+            <textarea name="description" rows="4" required></textarea>
+            <label for="img">Image</label>
+            <input type="file" name="img" accept="image/*" required>
+            <label for="website">Website</label>
+            <input type="url" name="website">
+            <label for="offer">Offer Details</label>
+            <input type="text" name="offer">
+            <label for="visit_details">Visit Details</label>
+            <input type="text" name="visit_details">
+            <button type="submit">Add Advertisement</button>
+        </form>
+    </div>
+</body>
+</html>
